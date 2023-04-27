@@ -7,7 +7,7 @@ This project, starred_repos_to_md, is a Python script that generates a markdown 
 ## Installation
 Clone the repository:
 ```bash
-git clone https://github.com/PapaPeskwo/starred_repos_to_md.git
+git clone https://github.com/PapaPeskwo/starred-repos-to-md.git
 ```
 
 Install the required dependencies using pip:
