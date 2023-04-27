@@ -33,8 +33,8 @@ After running the script, you'll find the markdown file with the table of your s
 The output markdown file will have a table like the following:
 
 ```less
-| Repository | Description |
-| --- | --- |
+| Repository                                         | Description                |
+| -------------------------------------------------- | -------------------------- |
 | [repo_name_1](https://github.com/user/repo_name_1) | Description of repo_name_1 |
 | [repo_name_2](https://github.com/user/repo_name_2) | Description of repo_name_2 |
 | [repo_name_3](https://github.com/user/repo_name_3) | Description of repo_name_3 |
