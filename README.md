@@ -19,7 +19,6 @@ pip install -r requirements.txt
 Replace the following placeholders in the script with your own information:
 - <add_your_username>: Your GitHub username.
 - <add_your_token>: Your GitHub personal access token. To generate a token, follow these [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
-- <add_your_output_file.md>: The desired name and path for the output markdown file (e.g., output/starred_repos.md).
 
 Run the script:
 ```bash
