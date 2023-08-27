@@ -21,16 +21,27 @@ git clone https://github.com/PapaPeskwo/starred-repos-to-md.git
 pip install -r requirements.txt
 ```
 
-3. Configure the Script:
+## Configure the Script:
 
-- Create a .env file in the project directory with the following format:
+1. Generate a GitHub Personal Access Token:
+    - Go to GitHub's token settings.
+    - Click on "Generate new token".
+    - Provide a descriptive name for the token in the "Note" field.
+    - Under "Select Scopes", check:
+        - read:user or user:email (If you're querying private starred repositories or accessing user data)
+    - Click "Generate token" at the bottom.
+    - Copy the generated token immediately (you won't be able to see it again).
+
+2. Setup the .env File:
+    - Create a .env file in the project directory with the following format:
 
 ```makefile
-USERNAME=your_github_username
-TOKEN=your_github_personal_access_token
+STAR_GITHUB_USERNAME=your_github_username
+STAR_GITHUB_TOKEN=your_github_personal_access_token
 ```
+
 - Replace your_github_username with your actual GitHub username.
-- Replace your_github_personal_access_token with your GitHub personal access token. If you need guidance on generating this token, refer to the official GitHub documentation.
+- Replace your_github_personal_access_token with the token you generated in the previous step.
 
 ## Execution
 
