@@ -3,12 +3,13 @@ import requests
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()  # Load environment variables from .env file
+# Load environment variables from .env file
+load_dotenv()
 
 GITHUB_API_URL = "https://api.github.com"
-USERNAME = os.getenv("USERNAME")
-TOKEN = os.getenv("TOKEN")
-FILENAME = os.getenv("FILENAME", "My_Starred_Repositories.md")
+USERNAME = os.getenv("STAR_GITHUB_USERNAME")
+TOKEN = os.getenv("STAR_GITHUB_TOKEN")
+DEFAULT_FILENAME = "My_Starred_Repositories.md"
 
 def get_all_pages(url, headers):
     results = []
@@ -19,19 +20,39 @@ def get_all_pages(url, headers):
     return results
 
 def get_starred_repositories():
-    starred_url = f"{GITHUB_API_URL}/users/{USERNAME}/starred"
+    starred_url = f"{GITHUB_API_URL}/users/{USERNAME}/starred?per_page=100"  # set maximum results per page
     headers = {"Authorization": f"token {TOKEN}"}
-    return get_all_pages(starred_url, headers)
+    repositories = get_all_pages(starred_url, headers)
+    
+    if not repositories:
+        print(f"Error: Unable to fetch starred repositories for {USERNAME}.")
+        return []
+    
+    return repositories
 
 def generate_markdown_table(repositories):
     table = "| Repository | Description |\n| --- | --- |\n"
     for repo in repositories:
-        table += f"| [{repo['name']}]({repo['html_url']}) | {repo['description']} |\n"
+        table += f"| [{repo['name']}]({repo['html_url']}) | {repo['description'] or 'No description'} |\n"
     return table
 
 def main():
-    output_file = Path(FILENAME)
-    
+    # Get filename
+    choice = input(f"Do you want to name the file \"{DEFAULT_FILENAME}\" [Y/n]: ").lower().strip()
+    if choice == 'n':
+        FILENAME = input("Enter the desired filename (with extension, e.g., .md): ")
+    else:
+        FILENAME = DEFAULT_FILENAME
+
+    # Determine where to save the file
+    choice = input("Do you want to store the file next to the script [Y/n]: ").lower().strip()
+    if choice == 'n':
+        dir_path = input("Enter the directory path to save the file: ")
+        output_file = Path(dir_path, FILENAME)
+    else:
+        output_file = Path(FILENAME)
+
+    # Fetch repositories and generate markdown table
     starred_repos = get_starred_repositories()
     markdown_table = generate_markdown_table(starred_repos)
 
