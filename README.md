@@ -1,37 +1,63 @@
-This project, starred_repos_to_md, is a Python script that generates a markdown table of your GitHub starred repositories. It fetches your starred repositories via the GitHub API and outputs the results as a markdown file. The table includes the repository name (with a link) and its description.
+# Starred Repos To Markdown
 
-## Requirements
-- Python 3.6 or higher
-- requests library
+starred_repos_to_md is a Python script designed to create a markdown table of your GitHub starred repositories. By interacting with the GitHub API, the script gathers your starred repositories and neatly displays them in a markdown file. Each entry in the table showcases the repository name, which doubles as a link, and its respective description.
 
-## Installation
-Clone the repository:
+## Prerequisites
+
+- Python Version: 3.6 or higher
+- Dependencies: requests library and python-dotenv
+
+## Installation and Setup
+
+1. Clone the Repository:
+
 ```bash
 git clone https://github.com/PapaPeskwo/starred-repos-to-md.git
 ```
 
-Install the required dependencies using pip:
+2. Install Required Dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
-Replace the following placeholders in the script with your own information:
-- <add_your_username>: Your GitHub username.
-- <add_your_token>: Your GitHub personal access token. To generate a token, follow these [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+## Configure the Script:
 
-Run the script:
+1. Generate a GitHub Personal Access Token:
+    - Go to GitHub's token settings.
+    - Click on "Generate new token".
+    - Provide a descriptive name for the token in the "Note" field.
+    - Under "Select Scopes", check:
+        - read:user or user:email (If you're querying private starred repositories or accessing user data)
+    - Click "Generate token" at the bottom.
+    - Copy the generated token immediately (you won't be able to see it again).
+
+2. Setup the .env File:
+    - Create a .env file in the project directory with the following format:
+
+```makefile
+STAR_GITHUB_USERNAME=your_github_username
+STAR_GITHUB_TOKEN=your_github_personal_access_token
+```
+
+- Replace your_github_username with your actual GitHub username.
+- Replace your_github_personal_access_token with the token you generated in the previous step.
+
+## Execution
+
+Simply run the script using the following command:
+
 ```bash
 python starred_repos_to_md.py
 ```
 
-After running the script, you'll find the markdown file with the table of your starred repositories at the specified output location.
+Upon completion, the markdown file containing the table of your starred repositories will be generated in your specified location.
 
-## Example Output
+## Sample Output
 
-The output markdown file will have a table like the following:
+The generated markdown file will encapsulate your repositories in the following table format:
 
-```less
+```markdown
 | Repository                                         | Description                |
 | -------------------------------------------------- | -------------------------- |
 | [repo_name_1](https://github.com/user/repo_name_1) | Description of repo_name_1 |
